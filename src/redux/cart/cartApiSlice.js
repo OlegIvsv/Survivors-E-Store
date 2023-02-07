@@ -1,7 +1,7 @@
-import { api } from "../auth/api";
+import { apiSlice } from "../auth/api";
 
 
-export const cartApiSlice = api.injectEndpoints({
+export const cartApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         /* Get cart by customer id */
         cart: builder.query({
