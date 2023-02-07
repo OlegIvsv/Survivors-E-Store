@@ -1,12 +1,20 @@
 import { Disclosure, Transition } from "@headlessui/react";
+import { useSelector } from "react-redux";
+import { authStateSelector } from "../redux/auth/authSlice";
+import { useCartQuery } from "../redux/cart/cartApiSlice";
 
 export default function TopMenu() {
+
+  const {id:customerId} = useSelector(authStateSelector);
+  const {data: cart, isSuccess} = useCartQuery({customerId});
+
+  const itemCount = isSuccess ? cart.items.length : '...';
 
   return (
     <nav className="bg-x-dark-green text-x-white font-bold m-0 p-0">
       <div className="hidden sm:block">
         <InfoMenu />
-        <div class="flex flex-row justify-between w-full">
+        <div className="flex flex-row justify-between w-full">
           <div className="w-20 pl-3 py-2 mr-4">
             <img
               src={require("../pictures/logo-no-background.png")}
@@ -25,11 +33,11 @@ export default function TopMenu() {
           </div>
           <div className="basis-1/5 flex flex-row items-center justify-center gap-10 text-4xl">
             <button>
-              <i class="bi bi-person-fill"></i>
+              <i className="bi bi-person-fill"></i>
             </button>
             <button>
-              <i class="bi bi-cart-fill"></i>
-              <div className="badge bg-x-green text-x-white">{5}</div>
+              <i className="bi bi-cart-fill"></i>
+              <div className="badge bg-x-green text-x-white">{itemCount}</div>
             </button>
           </div>
         </div>
