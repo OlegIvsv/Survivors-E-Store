@@ -1,9 +1,9 @@
 import './App.css';
-import ShoppingCart from './components/ShoppingCart';
-import TopMenu from './components/TopMenu';
-import Footer from './components/Footer';
+import { ShoppingCart } from './components/shopping-cart/ShoppingCart';
+import { TopMenu } from './components/navbar/TopMenu';
+import { Footer } from './components/footer/Footer';
+import { Login } from './components/auth/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
 
 function App() {
   return (

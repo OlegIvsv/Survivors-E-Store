@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom';  
 
-export default function Login() {
+export function Login() {
 
   return (
     <div className="flex flex-row h-screen">
       <div className="basis-full md:basis-1/2 xl:basis-2/5 flex flex-col mx-auto py-5 bg-x-white">
         <div className="w-2/5 mx-auto">
           <img
-            src={require("../pictures/logo-black-no-background.png")}
+            src={require("../../pictures/logo-black-no-background.png")}
             className="object-scale-down"
           />
         </div>

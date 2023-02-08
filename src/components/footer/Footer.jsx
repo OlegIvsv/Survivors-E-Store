@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Footer() {
+export function Footer() {
   const references = [
     { reference: "#", title: "About" },
     { reference: "#", title: "Privacy Policy" },

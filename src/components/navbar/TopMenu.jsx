@@ -6,10 +6,12 @@ import {
   cartItemCountSelector,
   cartStatusSelector,
   fetchCartItemsAsync,
-} from "../redux/cart/cartSlice";
+} from "../../redux/cart/cartSlice";
+import { GlobalSearchInput } from "./GlobalSearchInput";
+import { InfoMenu } from "./InfoMenu";
 
 
-export default function TopMenu() {
+export function TopMenu() {
 
   const dispatch = useDispatch();
   const cartItemsCount = useSelector(cartItemCountSelector);
@@ -31,7 +33,7 @@ export default function TopMenu() {
         <div className="flex flex-row justify-between w-full">
           <div className="w-20 pl-3 py-2 mr-4">
             <img
-              src={require("../pictures/logo-no-background.png")}
+              src={require("../../pictures/logo-no-background.png")}
               className="object-scale-down"
             />
           </div>
@@ -101,50 +103,4 @@ export default function TopMenu() {
   );
 }
 
-export function GlobalSearchInput() {
-  return (
-    <form class="w-full px-4">
-      <div class="flex">
-        <input
-          class="input bg-x-white w-full text-x-dark-green mr-3 py-1 px-2 rounded"
-          type="text"
-          placeholder="Search ..."
-        />
-        <button
-          class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-          type="button"
-        >
-          <i class="bi bi-search"></i>
-        </button>
-      </div>
-    </form>
-  );
-}
 
-export function InfoMenu() {
-
-  const infoMenuItems = [
-    { reference: '#' , title: 'About Us'},
-    { reference: '#' , title: 'Shipping and Payment'},
-    { reference: '#' , title: 'Contacts'},
-    { reference: '#' , title: 'Customer Support'} 
-  ];
-  
-  return (
-    <div className="bg-x-dark-green px-2 breadcrumbs">
-      <ul className=" text-white">
-        {infoMenuItems.map((item, index) => (
-          <li>
-            <a
-              href={item.reference}
-              key={index}
-              className="text-x-white text-xs font-bold"
-            >
-              {item.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
