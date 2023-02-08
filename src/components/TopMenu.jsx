@@ -1,14 +1,28 @@
 import { Disclosure, Transition } from "@headlessui/react";
-import { useSelector } from "react-redux";
-import { authStateSelector } from "../redux/auth/authSlice";
-import { useCartQuery } from "../redux/cart/cartApiSlice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import {
+  cartItemCountSelector,
+  cartStatusSelector,
+  fetchCartItemsAsync,
+} from "../redux/cart/cartSlice";
+
 
 export default function TopMenu() {
 
-  const {id:customerId} = useSelector(authStateSelector);
-  const {data: cart, isSuccess} = useCartQuery({customerId});
+  const dispatch = useDispatch();
+  const cartItemsCount = useSelector(cartItemCountSelector);
+  const cartStatus = useSelector(cartStatusSelector);
 
-  const itemCount = isSuccess ? cart.items.length : '...';
+  useEffect(() => { 
+    if(cartStatus === 'idle') {
+     dispatch(fetchCartItemsAsync());
+    }
+  }, [cartStatus]);
+  
+  const itemCountValue = cartStatus === 'succeeded' ? cartItemsCount : '...'; 
+  console.log(itemCountValue);
 
   return (
     <nav className="bg-x-dark-green text-x-white font-bold m-0 p-0">
@@ -32,13 +46,13 @@ export default function TopMenu() {
             <GlobalSearchInput />
           </div>
           <div className="basis-1/5 flex flex-row items-center justify-center gap-10 text-4xl">
-            <button>
-              <i className="bi bi-person-fill"></i>
-            </button>
-            <button>
+              <NavLink to="login">
+                <i className="bi bi-person-fill"></i>
+              </NavLink>
+            <NavLink to='cart'>
               <i className="bi bi-cart-fill"></i>
-              <div className="badge bg-x-green text-x-white">{itemCount}</div>
-            </button>
+              <div className="badge bg-x-green text-x-white">{itemCountValue}</div>
+            </NavLink>
           </div>
         </div>
       </div>
@@ -64,13 +78,13 @@ export default function TopMenu() {
                     </a>
                   </div>
                   <div className="basis-1/2 flex flex-row items-center justify-center gap-10 text-3xl">
-                    <button>
-                      <i class="bi bi-person-fill"></i>
-                    </button>
-                    <button>
+                      <NavLink to="login">
+                        <i className="bi bi-person-fill"></i>
+                      </NavLink>
+                    <NavLink to='cart'>
                       <i class="bi bi-cart-fill"></i>
-                      <div className="badge bg-x-green text-x-white">{5}</div>
-                    </button>
+                      <div className="badge bg-x-green text-x-white">{itemCountValue}</div>
+                    </NavLink>
                   </div>
                 </div>
                 <GlobalSearchInput />
