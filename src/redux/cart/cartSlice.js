@@ -79,6 +79,27 @@ export const updateItemQuantityAsync = createAsyncThunk(
   }
 );
 
+export const putItemToCartAsync = createAsyncThunk(
+  "cart/putItemToCartAsync",
+  async function ({ item }, { getState, rejectWithValue }) {
+    const customerId = getState().auth.id;
+    try {
+      const response = await fetch(`${baseUrl}/put-item/${customerId}`, {
+        method: "PUT",
+        body: JSON.stringify({ ...item }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.status != 200)
+        rejectWithValue(`Failure with status: ${response.status}`);
+
+      return { item };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const clearCartAsync = createAsyncThunk(
   "cart/clearCartAsync",
   async function (_, { getState, rejectWithValue }) {
@@ -116,12 +137,20 @@ export const cartSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(updateItemQuantityAsync.fulfilled, (state, action) => {
-        const {item, newQuantity} = action.payload;
+        const { item, newQuantity } = action.payload;
         state.items = state.items.map((i) => {
           if (i.productId === item.productId)
-            return { ...i, itemQuantity: newQuantity };
+            return {...i, itemQuantity: newQuantity };
           return i;
         });
+      })
+      .addCase(putItemToCartAsync.fulfilled, (state, action) => {
+        const { item } = action.payload;
+        const index = state.items.findIndex(i => i.productId === item.productId);
+        if(index < 0)
+          state.items.push(item);
+        else
+          state.items[index].itemQuantity += item.itemQuantity;
       })
       .addCase(removeCartItemAsync.fulfilled, (state, action) => {
         const removeId = action.payload.productId;
