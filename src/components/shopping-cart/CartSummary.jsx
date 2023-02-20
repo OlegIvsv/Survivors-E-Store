@@ -18,11 +18,11 @@ export function CartSummary() {
   const personalDiscount = 0.0;
 
   const sum = cartItems
-    .map(product => product.unitPrice * product.quantity)
+    .map(product => product.unitPrice * product.itemQuantity)
     .reduce((sum, next) => sum + next);
 
   const sumWithDiscounts = cartItems
-    .map(product => product.unitPrice * (1 - product.discount) * product.quantity)
+    .map(product => product.unitPrice * (1 - product.discount) * product.itemQuantity)
     .reduce((sum, next) => sum + next);
 
   const sumWithPersonalDiscount = sumWithDiscounts * (1 - personalDiscount);
