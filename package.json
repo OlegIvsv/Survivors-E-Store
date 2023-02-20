@@ -4,7 +4,10 @@
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.9",
+    "@mui/base": "^5.0.0-alpha.118",
     "@reduxjs/toolkit": "^1.9.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -22,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-tw": "tailwind build -i src/index.css -o public/styles.css"
+    "build-tw": "tailwind build -i src/index.css -o src/styles.css"
   },
   "eslintConfig": {
     "extends": [
