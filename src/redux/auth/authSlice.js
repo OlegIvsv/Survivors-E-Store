@@ -6,10 +6,10 @@ import { createSlice } from "@reduxjs/toolkit";
 */
 const initialState = { 
     name: "User_1", 
-    id: "501f738f-3d4b-4787-a755-0073cf88d235",
+    id: "",
     login: 'login',
     password: 'password',
-    token: "1234567890qwerty"
+    token: ""
 };
 
 const authSlice = createSlice({
@@ -24,6 +24,9 @@ const authSlice = createSlice({
             state.password = password;
             state.login = login;
         },
+        setId: (state, action) => {
+            state.id = action.payload.id;
+        },
         logout: (state) => {
             state.name = '';
             state.token = '';
@@ -35,7 +38,7 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const {setCredentials, logout} = authSlice.actions;
+export const { setCredentials, logout, setId } = authSlice.actions;
 
 export const authStateSelector = (state)  => state.auth;
 export const authUserIdSelector = (state)  => state.auth.id; 

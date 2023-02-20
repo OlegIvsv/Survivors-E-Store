@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { setId } from '../auth/authSlice';
 
 /* Test API */
-const baseUrl = 'https://localhost:7015/api/Cart';
+const baseUrl = 'http://localhost:80/api/Cart';
 
 const initialState = {
   items: [],
@@ -11,9 +12,17 @@ const initialState = {
 
 export const fetchCartItemsAsync = createAsyncThunk(
   "cart/fetchCartItemsAsync",
-  async function (_, { getState, rejectWithValue }) {
-    const customerId = getState().auth.id;
+  async function (_, { getState, rejectWithValue, dispatch }) {
+    let customerId = getState().auth.id;
+    let token = getState().auth.token;
     try {
+
+      if(!token || !customerId){
+        localStorage.setItem("anonymousCart", 'ADCF1516-7CCD-4A8F-962A-D7F358A163FD');
+        customerId = localStorage.getItem("anonymousCart");
+        dispatch(setId({id: customerId}));
+      }
+
       const response = await fetch(`${baseUrl}/${customerId}`);
 
       if (response.status != 200)
@@ -107,11 +116,11 @@ export const cartSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(updateItemQuantityAsync.fulfilled, (state, action) => {
-        const updateId = action.payload.item.productId;
-        state.items = state.items.map((item) => {
-          if (item.productId === updateId)
-            return { ...item, quantity: action.payload.newQuantity };
-          return item;
+        const {item, newQuantity} = action.payload;
+        state.items = state.items.map((i) => {
+          if (i.productId === item.productId)
+            return { ...i, itemQuantity: newQuantity };
+          return i;
         });
       })
       .addCase(removeCartItemAsync.fulfilled, (state, action) => {
@@ -136,6 +145,6 @@ export const cartStatusSelector = (state) => state.cart.status;
 export const cartErrorSelector = (state) => state.cart.error;
 export const cartItemCountSelector = (state) => { 
   return state.cart.items
-    .reduce((total, next) => total + next.quantity, 0);
+    .reduce((total, next) => total + next.itemQuantity, 0);
 }
 
