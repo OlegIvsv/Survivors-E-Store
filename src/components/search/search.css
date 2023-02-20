@@ -1,0 +1,28 @@
+.sorting-btn {
+    @apply uppercase text-x-white
+}
+
+.sorting-btn-active {
+    @apply uppercase text-x-white font-bold underline
+}
+
+.display-btn {
+    @apply py-1 bg-x-white px-10
+}
+
+.pagination-btn-active {
+    @apply btn bg-x-red text-x-white font-bold hover:scale-110 hover:text-x-white hover:bg-x-red hover:border-2
+}
+
+.pagination-btn{
+    @apply btn btn-outline text-x-red font-bold hover:scale-110 hover:text-x-red hover:border-2
+}
+
+.buy-btn{
+    @apply  btn btn-block hover:bg-x-green rounded-none text-x-white bg-x-dark-green normal-case font-serif;
+}
+
+.price-input{
+    @apply  input input-sm input-ghost border-transparent border-b-2 border-b-x-red rounded-none focus:font-bold focus:border-transparent focus:border-b-x-red;
+}
+
