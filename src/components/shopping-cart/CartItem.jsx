@@ -37,7 +37,7 @@ export function CartItem({ item }) {
     }
   };
 
-  const priceWithDiscount = item.unitPrice * item.discount;
+  const priceWithDiscount = item.unitPrice * (1 - item.discount);
 
   return (
     <li className="flex py-6">
@@ -72,11 +72,9 @@ export function CartItem({ item }) {
           </div>
         </div>
         <div className="ml-4">
-          <div className="flex">
-            <p>{item.unitPrice.toFixed(2)}$</p>
-          </div>
+          <div className="flex">{priceWithDiscount.toFixed(2)}$</div>
           <div className="flex text-red-600 line-through">
-            {priceWithDiscount.toFixed(2)}$
+            <p>{item.unitPrice.toFixed(2)}$</p>
           </div>
         </div>
       </div>

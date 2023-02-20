@@ -5,12 +5,18 @@ import { FilterPanel } from "./FilterPanel";
 import { OptionsPanel } from "./OptionsPanel";
 import { SearchResultList } from "./SearchResultList";
 
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+}
+
 export const testData = () =>
   Array.from({ length: 10 }, (element) => ({
-    _id: Math.random(),
-    productId: Math.random(),
+    id: uuidv4(),
+    productId: uuidv4(),
     productTitle: "Banana",
-    unitPrice: (Math.random() * 30).toFixed(2),
+    unitPrice: Math.random() * 30,
     discount: Math.random() > 0.5 ? 0 : 0.15,
     imageUrl:
       "https://images.squarespace-cdn.com/content/v1/5a5c237490bcce79ad84df9c/1518279384323-0YUC6Z83KYA1IVXBU0OA/Soulive-Tshirt-Black-White.jpg?format=1000w",
