@@ -4,6 +4,7 @@ import { TopMenu } from './components/navbar/TopMenu';
 import { Footer } from './components/footer/Footer';
 import { Login } from './components/auth/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SearchPage from './components/search/SearchPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="cart" element={<ShoppingCart />} />
           <Route path="login" element={<Login />} />
+          <Route path="search" element={<SearchPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
