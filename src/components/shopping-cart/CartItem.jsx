@@ -41,10 +41,11 @@ export function CartItem({ item }) {
 
   return (
     <li className="flex py-6">
-      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg border">
         <img
-          src={item.imageSrc}
-          className="h-full w-full object-cover object-center" />
+          src={item.imageUrl}
+          className="h-full w-full object-cover object-center"
+        />
       </div>
       <div className="ml-4 flex flex-1 flex-col font-bold">
         <div className="flex justify-between text-sm">
@@ -52,18 +53,23 @@ export function CartItem({ item }) {
             <a href={item.href}>
               {item.productTitle}
               <i className="text-red-600 mb-6 align-text-top text-xs">
-                {"  "}-{item.discount * 100}%
+                {"  "}-{(item.discount * 100).toFixed(2)}%
               </i>
             </a>
           </h3>
-          <input
-            type="number"
-            value={item.quantity}
-            onInput={(e) => changeThisQuantity(e.target.valueAsNumber)}
-            className="input input-sm w-20 border-none" />
-          <button type="button" onClick={() => removeThisItem()}>
-            <i className="bi bi-x text-lg"></i>
-          </button>
+        </div>
+        <div className="flex justify-between text-sm self-end">
+          <div className=" basis-1/3 flex flex-row justify-between">
+            <input
+              type="number"
+              value={item.itemQuantity}
+              onInput={(e) => changeThisQuantity(e.target.valueAsNumber)}
+              className="input input-sm input-group w-20 border-none"
+            />
+            <button type="button" onClick={() => removeThisItem()}>
+              <i className="bi bi-x text-lg"></i>
+            </button>
+          </div>
         </div>
         <div className="ml-4">
           <div className="flex">
