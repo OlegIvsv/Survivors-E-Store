@@ -25,3 +25,6 @@ yarn-error.log*
 # Json-server test data
 db.json
 database.json
+
+# tailwind output file
+/src/styles.css
