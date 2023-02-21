@@ -1,30 +1,25 @@
-import React from "react";
 import { useSearchParams } from "react-router-dom";
+import { QueryParams } from "./enums/queryParameters";
 
 export function Pagination({ numberOfPages }) {
-  
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const pageNumber = Number.parseInt(searchParams.get("pageNumber"));
+  const pageNumber = Number.parseInt(searchParams.get(QueryParams.Pagination));
   const startsFrom = Math.max(pageNumber - 2, 1);
   const endsWith = Math.min(pageNumber + 2, numberOfPages);
   const buttons = [];
 
   for (let i = startsFrom; i <= endsWith; ++i) {
+    const buttonStyle = i === pageNumber ? "pagination-btn-active" : "pagination-btn";
     buttons.push(
-      <button
-        className={
-          i === pageNumber ? "pagination-btn-active" : "pagination-btn"
-        }
-        onClick={() => setPage(i)}
-      >
+      <button className={buttonStyle} onClick={() => setPage(i)}>
         {i}
       </button>
     );
   }
 
   const setPage = (value) => {
-    searchParams.set("pageNumber", value);
+    searchParams.set(QueryParams.Pagination, value);
     setSearchParams(searchParams);
   };
 

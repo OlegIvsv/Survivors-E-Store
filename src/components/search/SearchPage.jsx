@@ -1,15 +1,9 @@
 import { Disclosure } from "@headlessui/react";
-import React from "react";
 import { useSearchParams } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import { FilterPanel } from "./FilterPanel";
 import { OptionsPanel } from "./OptionsPanel";
 import { SearchResultList } from "./SearchResultList";
-
-function uuidv4() {
-  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-  );
-}
 
 export const testData = () =>
   Array.from({ length: 10 }, (element) => ({
@@ -44,7 +38,7 @@ export default function SearchPage() {
               <>
                 <Disclosure.Button className="w-full px-4 py-2 bg-x-white hover:bg-x-red hover:text-x-white">
                   <i class="bi bi-sliders"></i>
-                  <span>{' '}FILTERS</span>
+                  <span> FILTERS</span>
                 </Disclosure.Button>
                 <Disclosure.Panel className="text-sm text-x-dark-green rounded-b-lg border-b-4">
                   <FilterPanel />

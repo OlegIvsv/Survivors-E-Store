@@ -1,4 +1,3 @@
-import React from 'react';
 import { DisplayOption } from './DisplayOption';
 import { SortingOption } from './SortingOption';
 

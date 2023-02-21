@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { FilterBase } from './FilterBase'
 import SliderUnstyled from '@mui/base/SliderUnstyled';
 import { useSearchParams } from 'react-router-dom';
+import {QueryParams} from '../enums/queryParameters';
 
 const Slider = React.forwardRef(function (props, ref){
   return (<SliderUnstyled
@@ -19,11 +20,12 @@ const Slider = React.forwardRef(function (props, ref){
 export default function PriceFilter({minPrice = 0, maxPrice = 100}) {
 
     const [searchParams, setSearchParams] = useSearchParams();
-    const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
+    const lower = searchParams.get(QueryParams.LowerPrice) || minPrice;
+    const upper = searchParams.get(QueryParams.UpperPrice) || maxPrice;
+    const [priceRange, setPriceRange] = useState([lower, upper]);
 
     const setFromText = (value, index) => {
         value = Number.parseInt(value) || (index === 0 ? minPrice : maxPrice);
-        console.log(value)
         if(value > maxPrice)
             value = maxPrice;
         if(value < minPrice)
@@ -35,14 +37,14 @@ export default function PriceFilter({minPrice = 0, maxPrice = 100}) {
     };
 
     const applyToSearchParams = () => {
-        searchParams.set('minPrice', priceRange[0]);
-        searchParams.set('maxPrice', priceRange[1]);
+        searchParams.set(QueryParams.LowerPrice, priceRange[0]);
+        searchParams.set(QueryParams.UpperPrice, priceRange[1]);
         setSearchParams(searchParams);
     }
 
     return (
       <FilterBase title="Price">
-        <div className='px-3 pb-5'>
+        <div className="px-3 pb-5">
           <div>
             <Slider
               step={1}
@@ -52,18 +54,25 @@ export default function PriceFilter({minPrice = 0, maxPrice = 100}) {
               onChange={(_, val) => setPriceRange(val)}
             />
           </div>
-          <div className='flex flex-row justify-between w-max-full mt-2'>
-          <input
-            type="text" value={priceRange[0]} onChange={e => setFromText(e.target.value, 0)}
-            className="w-1/4 price-input"
-          />
-          <input
-            type="text" value={priceRange[1]} onChange={e => setFromText(e.target.value, 1)}
-            className="w-1/4 price-input"
-          />
-          <button className='btn btn-sm text-x-red hover:scale-105 hover:font-bold' onClick={applyToSearchParams}>
-            OK
-          </button>
+          <div className="flex flex-row justify-between w-max-full mt-2">
+            <input
+              type="text"
+              value={priceRange[0]}
+              onChange={(e) => setFromText(e.target.value, 0)}
+              className="w-1/4 price-input"
+            />
+            <input
+              type="text"
+              value={priceRange[1]}
+              onChange={(e) => setFromText(e.target.value, 1)}
+              className="w-1/4 price-input"
+            />
+            <button
+              className="btn btn-sm text-x-red hover:scale-105 hover:font-bold"
+              onClick={applyToSearchParams}
+            >
+              OK
+            </button>
           </div>
         </div>
       </FilterBase>

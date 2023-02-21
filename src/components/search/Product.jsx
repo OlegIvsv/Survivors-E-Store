@@ -1,8 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { putItemToCartAsync } from '../../redux/cart/cartSlice';
-
-
+import { putItemToCartAsync } from '../../redux/cart/thunks';
 
 export function ProductCell({ product }) {
 

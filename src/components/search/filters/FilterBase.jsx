@@ -1,6 +1,4 @@
 import { Disclosure } from '@headlessui/react';
-import React from 'react';
-
 
 export function FilterBase({ title, children }) {
   return (

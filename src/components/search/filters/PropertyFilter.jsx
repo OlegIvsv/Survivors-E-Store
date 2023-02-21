@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { FilterBase } from './FilterBase';
+
 /**
- * 
  * @param allOptions - array of options in format { name, id }
  * @param title - title 
  * @param searchKey - query parameter name

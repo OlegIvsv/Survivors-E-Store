@@ -1,23 +1,23 @@
 import { Menu } from '@headlessui/react';
-import React from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { QueryParams } from './enums/queryParameters';
+import { SortingOptions } from './enums/sortingOptions';
 
+const sortingOptions = [
+  { name: "By price asc", value:  SortingOptions.ByPriceAsc},
+  { name: "By price desc", value: SortingOptions.ByPriceDesc },
+  { name: "Most popular", value: SortingOptions.Popular },
+];
 
 export function SortingOption({ mini = false }) {
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentSorting = searchParams.get('sorting');
+  const currentSorting = searchParams.get(QueryParams.Sorting);
 
   const setSorting = (value) => {
-    searchParams.set('sorting', value);
+    searchParams.set(QueryParams.Sorting, value);
     setSearchParams(searchParams);
   };
-
-  const options = [
-    { name: "By price asc", value: "price-asc" },
-    { name: "By price desc", value: "price-desc" },
-    { name: "Most popular", value: "popular" },
-  ];
 
  if(mini)
   return (
@@ -26,7 +26,7 @@ export function SortingOption({ mini = false }) {
         <i class="bi bi-sort-down text-2xl text-x-white"></i>
       </Menu.Button>
       <Menu.Items className="left-0 absolute mt-2 z-50 w-56 origin-top-right divide-y divide-x-green rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-        {options.map((option, i) => (
+        {sortingOptions.map((option, i) => (
           <Menu.Item key={i}>
             <button
             onClick={() => setSorting(option.value)} 
@@ -42,7 +42,7 @@ export function SortingOption({ mini = false }) {
     <div className="flex flex-col uppercase text-xs text-x-white">
       <p>Sortign</p>
       <div className="flex flex-row justify-center gap-4">
-        {options.map((option, i) => (
+        {sortingOptions.map((option, i) => (
           <button key={i} 
           onClick={() => setSorting(option.value)}
           className={`btn btn-sm border-none py-0 ${ option.value === currentSorting ? 'underline font-bold' : ''}`}>
