@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {
   cartItemsSelector,
   cartStatusSelector
-} from "../../redux/cart/cartSlice";
+} from "../../redux/cart/cartSelectors";
 
 
 export function CartSummary() {

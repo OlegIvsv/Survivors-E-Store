@@ -3,37 +3,37 @@ import { useDispatch } from "react-redux";
 import {
   removeCartItemAsync,
   updateItemQuantityAsync
-} from "../../redux/cart/cartSlice";
-
+} from "../../redux/cart/thunks";
 
 export function CartItem({ item }) {
+
   const dispatch = useDispatch();
-  const [updateStatus, setUpdateStatus] = useState("idle");
-  const [removeStatus, setRemoveStatus] = useState("idle");
+  const [updateIsPending, setUpdateIsPending] = useState(false);
+  const [removeIsPending, setRemoveIsPending] = useState(false);
 
   const removeThisItem = async () => {
-    if (removeStatus === "pending")
+    if (removeIsPending === true)
       return;
     try {
-      setUpdateStatus("pending");
+      setUpdateIsPending(true);
       await dispatch(removeCartItemAsync({ productId: item.productId }));
     } catch {
       //if error, state is not updated
     } finally {
-      setRemoveStatus("idle");
+      setRemoveIsPending(false);
     }
   };
 
   const changeThisQuantity = async (newQuantity) => {
-    if (updateStatus === "pending")
+    if (updateIsPending === true)
       return;
     try {
-      setUpdateStatus("pending");
+      setUpdateIsPending(true);
       await dispatch(updateItemQuantityAsync({ item, newQuantity }));
     } catch {
       //if error, state is not updated
     } finally {
-      setUpdateStatus("idle");
+      setUpdateIsPending(false);
     }
   };
 

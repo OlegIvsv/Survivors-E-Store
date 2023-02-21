@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CartStatus } from "../../redux/cart/cartStatus";
+import { CartItem } from "./CartItem";
 import {
-  fetchCartItemsAsync,
   cartItemsSelector,
   cartStatusSelector,
   cartErrorSelector
-} from "../../redux/cart/cartSlice";
-import { CartItem } from "./CartItem";
+} from "../../redux/cart/cartSelectors";
+import { fetchCartItemsAsync } from "../../redux/cart/thunks";
 
 
 export function CartItemList() {
@@ -16,17 +17,17 @@ export function CartItemList() {
   const cartError = useSelector(cartErrorSelector);
 
   useEffect(() => {
-    if (cartStatus === "idle") {
+    if (cartStatus === CartStatus.Idle) {
       dispatch(fetchCartItemsAsync());
     }
   }, []);
 
   let content;
-  if (cartStatus === "loading" || cartStatus == "idle")
+  if (cartStatus === CartStatus.Loading || cartStatus === CartStatus.Idle)
     content = <div>Loading...</div>;
-  else if (cartStatus === "succeeded")
+  else if (cartStatus === CartStatus.Succeeded)
     content = cartItems.map((item, i) => <CartItem key={i} item={item} />);
-  else if (cartStatus === "failed")
+  else if (cartStatus === CartStatus.Failed)
     content = <div>Error: {cartError}</div>;
 
   return (

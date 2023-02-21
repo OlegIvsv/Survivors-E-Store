@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchCartItemsAsync,
   cartStatusSelector,
   cartItemCountSelector,
-  clearCartAsync,
-} from "../../redux/cart/cartSlice";
+} from "../../redux/cart/cartSelectors";
+import { CartStatus } from "../../redux/cart/cartStatus";
+import { fetchCartItemsAsync, clearCartAsync } from "../../redux/cart/thunks";
 import { CartItemList } from "./CartItemList";
 import { CartSummary } from "./CartSummary";
 import { EmptyShoppingCart } from "./EmptyShoppingCart";
@@ -16,20 +16,19 @@ export function ShoppingCart() {
   const cartStatus = useSelector(cartStatusSelector);
 
   useEffect(() => {
-    if (cartStatus === "idle") {
+    if (cartStatus === CartStatus.Idle) {
       dispatch(fetchCartItemsAsync());
     }
   }, []);
 
-  const clearThisCart = async () => {
-    await dispatch(clearCartAsync());
-  };
+  const clearThisCart = async () => await dispatch(clearCartAsync());
 
-  if (cartStatus === "pending" || cartStatus === "idle")
+  if (cartStatus === CartStatus.Loading || cartStatus === CartStatus.Idle)
     return <div>Loading...</div>;
-  if (cartStatus === "failed")
+  if (cartStatus === CartStatus.Failed)
     return <div>Sorry. we can't get your shopping cart</div>;
-  if (cartItemCount === 0) return <EmptyShoppingCart />;
+  if (cartItemCount === 0)
+     return <EmptyShoppingCart />;
 
   return (
     <div className="flex flex-col grow m-2 bg-white">
