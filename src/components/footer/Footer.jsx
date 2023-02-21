@@ -1,13 +1,11 @@
-import React from 'react'
+const references = [
+  { reference: "#", title: "About" },
+  { reference: "#", title: "Privacy Policy" },
+  { reference: "#", title: "Licensing" },
+  { reference: "#", title: "Social Media" },
+];
 
 export function Footer() {
-  const references = [
-    { reference: "#", title: "About" },
-    { reference: "#", title: "Privacy Policy" },
-    { reference: "#", title: "Licensing" },
-    { reference: "#", title: "Social Media" },
-  ];
-
   return (
     <footer className="px-2 bg-x-dark-green text-x-white">
       <div className="m-3">
