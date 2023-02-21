@@ -9,7 +9,6 @@ export function GlobalSearchInput() {
   
   const setTextOnSubmit = (event) => {
     event.preventDefault();
-  
     navigate({
       pathname:'search', 
       search: createSearchParams({

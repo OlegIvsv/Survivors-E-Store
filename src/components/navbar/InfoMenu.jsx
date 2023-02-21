@@ -1,13 +1,11 @@
+const infoMenuItems = [
+  { reference: '#', title: 'About Us' },
+  { reference: '#', title: 'Shipping and Payment' },
+  { reference: '#', title: 'Contacts' },
+  { reference: '#', title: 'Customer Support' }
+];
 
 export function InfoMenu() {
-
-  const infoMenuItems = [
-    { reference: '#', title: 'About Us' },
-    { reference: '#', title: 'Shipping and Payment' },
-    { reference: '#', title: 'Contacts' },
-    { reference: '#', title: 'Customer Support' }
-  ];
-
   return (
     <div className="bg-x-dark-green px-2 breadcrumbs">
       <ul className=" text-white">

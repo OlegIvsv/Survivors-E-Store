@@ -2,13 +2,14 @@ import { Disclosure, Transition } from "@headlessui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { CartStatus } from "../../redux/cart/cartStatus";
+import { GlobalSearchInput } from "./GlobalSearchInput";
+import { InfoMenu } from "./InfoMenu";
 import {
   cartItemCountSelector,
   cartStatusSelector,
-  fetchCartItemsAsync,
-} from "../../redux/cart/cartSlice";
-import { GlobalSearchInput } from "./GlobalSearchInput";
-import { InfoMenu } from "./InfoMenu";
+} from "../../redux/cart/cartSelectors";
+import { fetchCartItemsAsync } from "../../redux/cart/thunks";
 
 
 export function TopMenu() {
@@ -18,13 +19,12 @@ export function TopMenu() {
   const cartStatus = useSelector(cartStatusSelector);
 
   useEffect(() => { 
-    if(cartStatus === 'idle') {
+    if(cartStatus === CartStatus.Idle) {
      dispatch(fetchCartItemsAsync());
     }
   }, [cartStatus]);
   
-  const itemCountValue = cartStatus === 'succeeded' ? cartItemsCount : '...'; 
-  console.log(itemCountValue);
+  const itemCountValue = (cartStatus === CartStatus.Succeeded ? cartItemsCount : '...'); 
 
   return (
     <nav className="bg-x-dark-green text-x-white font-bold m-0 p-0">
