@@ -37,10 +37,8 @@ export const fetchCartItemsAsync = createAsyncThunk(
         }
       }
       
-      console.log("fetching from", cartId)
       let response = await apiClient.get(`/${cartId}`);
       /* 404 status means that cart was deleted from database, so new one is created */
-      console.log("status",response.status);
       if(response.status === 404){
         const cart = await createAnonymousCartAsync();
         setCartIdToStorage(cart.customerId);

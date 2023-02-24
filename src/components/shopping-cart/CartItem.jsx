@@ -52,9 +52,11 @@ export function CartItem({ item }) {
           <h3>
             <a href={item.href}>
               {item.productTitle}
-              <i className="text-red-600 mb-6 align-text-top text-xs">
-                {"  "}-{(item.discount * 100).toFixed(2)}%
-              </i>
+              {item.discount === 0 || (
+                <i className="text-red-600 mb-6 align-text-top text-xs">
+                  {"  "}-{(item.discount * 100).toFixed(2)}%
+                </i>
+              )}
             </a>
           </h3>
         </div>
@@ -73,9 +75,11 @@ export function CartItem({ item }) {
         </div>
         <div className="ml-4">
           <div className="flex">{priceWithDiscount.toFixed(2)}$</div>
-          <div className="flex text-red-600 line-through">
-            <p>{item.unitPrice.toFixed(2)}$</p>
-          </div>
+          {item.discount === 0 || (
+            <div className="flex text-red-600 line-through">
+              <p>{item.unitPrice.toFixed(2)}$</p>
+            </div>
+          )}
         </div>
       </div>
     </li>
