@@ -42,7 +42,7 @@ export const fetchCartItemsAsync = createAsyncThunk(
       if(response.status === 404){
         const cart = await createAnonymousCartAsync();
         setCartIdToStorage(cart.customerId);
-        dispatch(setCartId({id: cartId}));
+        dispatch(setCartId({cartId}));
         response = await apiClient.get(`/${cart.customerId}`);
       }
 
