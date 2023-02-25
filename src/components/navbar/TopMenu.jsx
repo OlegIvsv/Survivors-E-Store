@@ -1,7 +1,7 @@
 import { Disclosure, Transition } from "@headlessui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CartStatus } from "../../redux/cart/cartStatus";
 import { GlobalSearchInput } from "./GlobalSearchInput";
 import { InfoMenu } from "./InfoMenu";
@@ -39,9 +39,9 @@ export function TopMenu() {
           </div>
           <div className="flex flex-col items-center grow">
             <div className="my-auto">
-              <a href="#" className="m-2 text-2xl">
+              <Link to="/catalog" className="m-2 text-2xl">
                 CATALOG
-              </a>
+              </Link>
             </div>
           </div>
           <div className="basis-1/2 flex items-center px-4">
@@ -75,9 +75,9 @@ export function TopMenu() {
                 <hr />
                 <div className="basis-1/2 flex flex-row items-center grow py-2">
                   <div className="basis-1/2 my-auto">
-                    <a href="#" className="m-2 text-xl">
+                    <Link to="/catalog" className="m-2 text-xl">
                       CATALOG
-                    </a>
+                    </Link>
                   </div>
                   <div className="basis-1/2 flex flex-row items-center justify-center gap-10 text-3xl">
                       <NavLink to="login">
