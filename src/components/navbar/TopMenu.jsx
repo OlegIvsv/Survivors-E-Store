@@ -53,7 +53,7 @@ export function TopMenu() {
               </NavLink>
             <NavLink to='cart'>
               <i className="bi bi-cart-fill"></i>
-              <div className="badge bg-x-green text-x-white">{itemCountValue}</div>
+              <div className="badge bg-x-green text-x-white animate-bounce">{itemCountValue}</div>
             </NavLink>
           </div>
         </div>
