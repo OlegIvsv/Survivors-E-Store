@@ -6,6 +6,7 @@ import { Login } from './components/login/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SearchPage from './components/search/SearchPage';
 import ProductPage from './components/product/ProductPage';
+import CatalogPage from './components/catalog/CatalogPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="product/:id" element={<ProductPage />} />
+          <Route path="catalog" element={<CatalogPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
