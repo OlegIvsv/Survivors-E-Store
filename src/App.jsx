@@ -5,6 +5,7 @@ import { Footer } from './components/footer/Footer';
 import { Login } from './components/login/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SearchPage from './components/search/SearchPage';
+import ProductPage from './components/product/ProductPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="cart" element={<ShoppingCart />} />
           <Route path="login" element={<Login />} />
           <Route path="search" element={<SearchPage />} />
+          <Route path="product/:id" element={<ProductPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
