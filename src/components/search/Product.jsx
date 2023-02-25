@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { putItemToCartAsync } from '../../redux/cart/thunks';
 
 export function ProductCell({ product }) {
@@ -21,7 +22,9 @@ export function ProductCell({ product }) {
         />
       </div>
       <div className="basis-2/7 text-left px-1 pb-3 border-gray-400 shadow-xl">
-        <p className="line-clamp-2 text-lg">{product.productTitle}</p>
+        <Link to={`/product/${product.productId}`} className="line-clamp-2 text-lg font-bold hover:text-x-green">
+          {product.productTitle}
+        </Link>
         <span className="font-bold text-3xl">
           {product.unitPrice.toFixed(2)}$
         </span>
@@ -59,7 +62,9 @@ export function ProductRow({ product }) {
       </div>
       <div className="flex flex-col justify-between w-2/3 text-left ml-2 py-3">
         <div>
-          <p className="line-clamp-2 text-lg">{product.productTitle}</p>
+          <Link to={`/product/${product.productId}`} className="line-clamp-2 text-lg font-bold hover:text-x-green">
+            {product.productTitle}
+          </Link>
           <div>
             <span className="font-bold text-2xl">
               {product.unitPrice.toFixed(2)}$
