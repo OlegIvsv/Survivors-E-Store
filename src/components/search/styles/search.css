@@ -19,7 +19,7 @@
 }
 
 .buy-btn{
-    @apply  btn btn-block hover:bg-x-green rounded-none text-x-white bg-x-dark-green normal-case font-serif;
+    @apply  btn btn-block hover:bg-x-green rounded-lg text-x-white bg-x-dark-green normal-case font-serif;
 }
 
 .price-input{
