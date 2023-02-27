@@ -45,7 +45,7 @@ export function SortingOption({ mini = false }) {
         {sortingOptions.map((option, i) => (
           <button key={i} 
           onClick={() => setSorting(option.value)}
-          className={`btn btn-sm border-none py-0 ${ option.value === currentSorting ? 'underline font-bold' : ''}`}>
+          className={`btn btn-ghost btn-sm border-none py-0 ${ option.value === currentSorting ? 'underline font-bold' : ''}`}>
             {option.name}
           </button>
         ))}
