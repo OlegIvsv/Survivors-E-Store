@@ -1,0 +1,11 @@
+.transparent-text-input {
+    @apply bg-transparent border-0 border-b-2 focus:scale-110 border-x-green focus:border-x-green focus:ring-0 focus:border-b-4
+}
+
+.validation-label {
+    @apply label-text-alt font-bold text-x-red
+}
+
+.standard-form-button {
+    @apply btn bg-x-green text-x-white rounded-xl w-1/2 mx-auto hover:bg-x-green hover:scale-105 
+}

@@ -1,6 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import 'components/search/styles/search.css';
+@import 'components/sign-up/styles/sing-up.css';
 @import "tailwindcss/utilities";
 
 body {
