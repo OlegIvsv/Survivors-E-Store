@@ -30,7 +30,7 @@ export function Login() {
         </form>
         <p className="text-sm mt-2">
           Don't have an account?
-          <Link>
+          <Link to="/sign-up">
             <strong className="text-x-red underline"> Sign Up!</strong>
           </Link>
         </p>
