@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SearchPage from './components/search/SearchPage';
 import ProductPage from './components/product/ProductPage';
 import CatalogPage from './components/catalog/CatalogPage';
+import SignUpPage from './components/sign-up/SignUpPage';
 
 function App() {
   return (
@@ -17,13 +18,14 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="cart" element={<ShoppingCart />} />
           <Route path="login" element={<Login />} />
+          <Route path="sign-up" element={<SignUpPage />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="product/:id" element={<ProductPage />} />
           <Route path="catalog" element={<CatalogPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
-    </div>
+    </div>  
   );
 }
 
