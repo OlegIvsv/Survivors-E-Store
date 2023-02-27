@@ -1,7 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   daisyui: {
-    themes: [],
+    themes: [
+      {
+        mytheme: {
+          "base-100": "#ffffff",
+          "primary": "#0cbaba",   // x-green
+          "secondary": "#102e44", // x-dark-green
+          "accent": "#db2763",    // x-red
+          "info": "#01baef",      // x-blue
+          "neutral": "#e0f8ff",   // x-white
+        }
+      }
+    ],
   },
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -18,13 +29,13 @@ module.exports = {
       },
     },
   },
-  corePlugins:{
-    aspectRatio: false
+  corePlugins: {
+    aspectRatio: false,
   },
   plugins: [
-    require("@tailwindcss/forms"),
     require("daisyui"),
+    require("@tailwindcss/forms"),
     require("@tailwindcss/line-clamp"),
-    require('@tailwindcss/aspect-ratio')
-  ]
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };
