@@ -53,7 +53,7 @@ export const cartSlice = createSlice({
           (i) => i.productId === item.productId
         );
         if (index < 0) 
-          state.items.push(item);
+          state.items.unshift(item);
         else state.items[index].itemQuantity += item.itemQuantity;
       })
       .addCase(removeCartItemAsync.fulfilled, (state, action) => {
