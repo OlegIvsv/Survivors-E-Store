@@ -26,7 +26,7 @@ export function CartItemList() {
   if (cartStatus === CartStatus.Loading || cartStatus === CartStatus.Idle)
     content = <div>Loading...</div>;
   else if (cartStatus === CartStatus.Succeeded)
-    content = cartItems.map((item, i) => <CartItem key={i} item={item} />);
+    content = cartItems.map((item) => <CartItem key={item.productId} item={item} />);
   else if (cartStatus === CartStatus.Failed)
     content = <div>Error: {cartError}</div>;
 

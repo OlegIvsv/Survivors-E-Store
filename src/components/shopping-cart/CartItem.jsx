@@ -37,11 +37,12 @@ export function CartItem({ item }) {
     }
   };
 
-  const priceWithDiscount = item.unitPrice * (1 - item.discount);
+  const priceWithDiscount = item.unitPrice * item.itemQuantity * (1 - item.discount);
+  const priceWithoutDiscount = item.unitPrice * item.itemQuantity;
 
   return (
-    <li className="flex py-6">
-      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg border">
+    <li className="flex py-2">
+      <div className="h-28 w-28 flex-shrink-0 overflow-hidden rounded-lg border">
         <img
           src={item.imageUrl}
           className="h-full w-full object-cover object-center"
@@ -50,11 +51,11 @@ export function CartItem({ item }) {
       <div className="ml-4 flex flex-1 flex-col font-bold">
         <div className="flex justify-between text-sm">
           <h3>
-            <a href={item.href}>
+            <a href={item.href} className="line-clamp-1 font-semibold">
               {item.productTitle}
               {item.discount === 0 || (
-                <i className="text-red-600 mb-6 align-text-top text-xs">
-                  {"  "}-{(item.discount * 100).toFixed(2)}%
+                <i className="text-red-600 mb-6 align-text-top text-xs font-bold">
+                  {"  "}-{(item.discount * 100).toFixed()}%
                 </i>
               )}
             </a>
@@ -66,18 +67,20 @@ export function CartItem({ item }) {
               type="number"
               value={item.itemQuantity}
               onInput={(e) => changeThisQuantity(e.target.valueAsNumber)}
-              className="input input-sm input-group w-20 border-none"
+              className="input input-md input-group w-20 border-none font-mono text-lg"
             />
             <button type="button" onClick={() => removeThisItem()}>
               <i className="bi bi-x text-lg"></i>
             </button>
           </div>
         </div>
-        <div className="ml-4">
-          <div className="flex">{priceWithDiscount.toFixed(2)}$</div>
+        <div className="ml-4 -mt-5">
+          <div className="flex text-xl font-mono">
+            {priceWithDiscount.toFixed(2)}₴
+          </div>
           {item.discount === 0 || (
-            <div className="flex text-red-600 line-through">
-              <p>{item.unitPrice.toFixed(2)}$</p>
+            <div className="flex text-red-600 line-through font-mono">
+              <p>{priceWithoutDiscount.toFixed(2)}₴</p>
             </div>
           )}
         </div>

@@ -30,27 +30,35 @@ export function CartSummary() {
   const total = sumWithPersonalDiscount;
 
   return (
-    <section className="flex flex-col border border-gray-300 rounded-lg m-3 px-3">
+    <section className="flex flex-col border border-gray-300 rounded-lg m-3 px-3 shadow-md font-semibold">
       <span className="text-start my-2 font-bold">Order Summary</span>
 
       <div className="flex flex-row justify-between my-2">
         <p>Subtotal</p>
-        <p className="font-bold">{sum.toFixed(2)}$</p>
+        <p className="font-bold font-mono">
+          {sum.toFixed(2)}₴
+        </p>
       </div>
       <hr />
       <div className="flex flex-row justify-between my-2">
         <p>With Discount</p>
-        <p className="font-bold">{sumWithDiscounts.toFixed(2)}$</p>
+        <p className="font-bold font-mono">
+          {sumWithDiscounts.toFixed(2)}₴
+        </p>
       </div>
       <hr />
       <div className="flex flex-row justify-between my-2">
         <p>With The Personal Discount</p>
-        <p className="font-bold">{sumWithPersonalDiscount.toFixed(2)}$</p>
+        <p className="font-bold font-mono">
+          {sumWithPersonalDiscount.toFixed(2)}₴
+        </p>
       </div>
       <hr />
-      <div className="flex flex-row justify-between my-2 font-bold text-lg">
+      <div className="flex flex-row justify-between my-2 font-bold">
         <p>Total</p>
-        <p>{total.toFixed(2)}$</p>
+        <p className="font-mono underline">
+          {total.toFixed(2)}₴
+        </p>
       </div>
       <hr />
 
@@ -58,7 +66,9 @@ export function CartSummary() {
         to="make-order"
         className="bg-x-green text-x-white mx-4 my-2 py-2 rounded-md font-bold"
       >
-        <button>Make Order</button>
+        <button className="font-semibold">
+          Make Order
+        </button>
       </Link>
     </section>
   );
