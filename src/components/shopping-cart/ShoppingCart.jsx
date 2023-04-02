@@ -32,22 +32,24 @@ export function ShoppingCart() {
 
   return (
     <div className="flex flex-col grow m-2 bg-white">
-      <p className="font-bold text-lg text-left py-1 pl-3 sticky top-0 bg-white">
+      <p className="text-lg text-left py-1 pl-3 sticky top-0 bg-white font-semibold">
         Shopping Cart
         <hr className="w-3/5 mt-2" />
       </p>
       <div className="flex flex-col md:flex-row">
         <CartItemList />
         <div className="basis-2/5 flex flex-col justify-top">
-          <div className="flex flex-col sticky top-2">
+          <div className="flex flex-col sticky top-2 pl-4">
             <CartSummary />
             <div className="text-left order-first md:order-last">
+            <div className="tooltip tooltip-accent tooltip-bottom" data-tip="Clear cart?">
               <button
                 onClick={clearThisCart}
                 className="m-3 text-3xl self-start"
               >
                 <i className="bi bi-x-square"></i>
               </button>
+              </div>
             </div>
           </div>
         </div>
