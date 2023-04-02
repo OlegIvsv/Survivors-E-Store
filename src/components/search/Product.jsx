@@ -15,22 +15,25 @@ export function ProductCell({ product }) {
 
   return (
     <div className="flex flex-col w-full ">
-      <div className="basis-4/7 overflow-hidden rounded-lg rounded-b-none">
+      <div className="basis-4/7 overflow-hidden rounded-lg rounded-b-none aspect-w-1 aspect-h-1">
         <img
           className="object-cover object-center w-full h-full"
           src={product.imageUrl}
         />
       </div>
       <div className="basis-2/7 text-left px-1 pb-3 border-gray-400 shadow-xl">
-        <Link to={`/product/${product.productId}`} className="line-clamp-2 text-lg font-bold hover:text-x-green">
+        <Link 
+          to={`/product/${product.productId}`} 
+          className="line-clamp-2 font-bold hover:text-x-green min-h-12">
           {product.productTitle}
         </Link>
-        <span className="font-bold text-3xl">
-          {product.unitPrice.toFixed(2)}$
+        <span className="font-bold text-2xl font-mono">
+          {product.unitPrice.toFixed(2)}₴
         </span>
+        {" "}
         {product.discount == 0 || (
-          <span className="font-bold text-xl text-red-400 line-through">
-            {(product.unitPrice * (1 - product.discount)).toFixed(2)}$
+          <span className="font-bold font-mono text-xl text-red-400 line-through">
+            {(product.unitPrice * (1 - product.discount)).toFixed(2)}₴
           </span>
         )}
         <small className="text-gray-400 line-clamp-3">
@@ -66,12 +69,12 @@ export function ProductRow({ product }) {
             {product.productTitle}
           </Link>
           <div>
-            <span className="font-bold text-2xl">
-              {product.unitPrice.toFixed(2)}$
+            <span className="font-bold text-2xl font-mono">
+              {product.unitPrice.toFixed(2)}₴
             </span>
             {product.discount == 0 || (
-              <span className="font-bold text-xl text-red-400 line-through">
-                {(product.unitPrice * (1 - product.discount)).toFixed(2)}$
+              <span className="font-bold text-xl text-red-400 line-through font-mono">
+                {(product.unitPrice * (1 - product.discount)).toFixed(2)}₴
               </span>
             )}
           </div>
