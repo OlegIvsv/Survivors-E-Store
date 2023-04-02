@@ -2,7 +2,7 @@ import { Disclosure } from '@headlessui/react';
 
 export function FilterBase({ title, children }) {
   return (
-    <Disclosure>
+    <Disclosure defaultOpen={true}>
       {({ open }) => (
         <>
           <Disclosure.Button className="py-2 flex flex-row justify-between px-3 border-t-2">
